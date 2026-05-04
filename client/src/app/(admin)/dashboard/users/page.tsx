@@ -80,7 +80,7 @@ export default function UsersPage() {
       setUsers(data.users);
       setPagination(data.pagination);
       setGlobalStats(data.stats);
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
@@ -102,7 +102,7 @@ export default function UsersPage() {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-    } catch (err) {
+    } catch (err: any) {
       alert(err.message);
     } finally {
       setIsExporting(false);
@@ -132,7 +132,7 @@ export default function UsersPage() {
       
       await fetchUsers();
       closeModals();
-    } catch (err) {
+    } catch (err: any) {
       alert(err.message);
     } finally {
       setIsSubmitting(false);
@@ -172,7 +172,7 @@ export default function UsersPage() {
       });
       if (!response.ok) throw new Error('Failed to delete user');
       await fetchUsers();
-    } catch (err) {
+    } catch (err: any) {
       alert(err.message);
     }
   };

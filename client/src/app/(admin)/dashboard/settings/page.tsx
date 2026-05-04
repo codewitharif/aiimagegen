@@ -84,7 +84,7 @@ export default function SettingsPage() {
           saveToLibrary: data.saveToLibrary ?? true,
           aiPostProcess: data.aiPostProcess ?? false
         });
-      } catch (err) {
+      } catch (err: any) {
         setError(err instanceof Error ? err.message : 'An error occurred');
       } finally {
         setIsLoading(false);
@@ -175,7 +175,7 @@ export default function SettingsPage() {
 
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 3000);
-    } catch (err) {
+    } catch (err: any) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setIsSaving(false);

@@ -41,7 +41,7 @@ export default function LoginPage() {
 
       // Redirect to admin dashboard
       router.push('/dashboard');
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     } finally {
       setIsLoading(false);

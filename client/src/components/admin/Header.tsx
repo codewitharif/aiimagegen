@@ -8,9 +8,9 @@ import Link from 'next/link';
 
 export default function Header() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<{name?: string, email?: string, role?: string} | null>(null);
   const router = useRouter();
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Get user from localStorage
@@ -20,8 +20,8 @@ export default function Header() {
     }
 
     // Close dropdown on outside click
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsProfileOpen(false);
       }
     };

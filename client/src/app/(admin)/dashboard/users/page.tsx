@@ -25,8 +25,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL || 'http://localhost:5000/api';
 
+interface User {
+  id: string | number;
+  name: string;
+  email: string;
+  role: string;
+  status: string;
+  createdAt: string;
+  password?: string;
+}
+
 export default function UsersPage() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -42,8 +52,8 @@ export default function UsersPage() {
   // Modal States
   const [showAddModal, setShowAddModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
-  const [editingUser, setEditingUser] = useState(null);
-  const [viewingUser, setViewingUser] = useState(null);
+  const [editingUser, setEditingUser] = useState<User | null>(null);
+  const [viewingUser, setViewingUser] = useState<User | null>(null);
   
   // Form State
   const [formData, setFormData] = useState({ name: '', email: '', password: '', role: 'user', status: 'active' });
@@ -147,7 +157,7 @@ export default function UsersPage() {
     setFormData({ name: '', email: '', password: '', role: 'user', status: 'active' });
   };
 
-  const openEditModal = (user) => {
+  const openEditModal = (user: User) => {
     setEditingUser(user);
     setFormData({ 
       name: user.name || '', 
@@ -159,12 +169,12 @@ export default function UsersPage() {
     setShowAddModal(true);
   };
 
-  const openViewModal = (user) => {
+  const openViewModal = (user: User) => {
     setViewingUser(user);
     setShowViewModal(true);
   };
 
-  const handleDeleteUser = async (id) => {
+  const handleDeleteUser = async (id: string | number) => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
     try {
       const response = await fetch(`${API_BASE_URL}/users/${id}`, {

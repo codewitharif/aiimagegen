@@ -35,6 +35,14 @@ interface User {
   password?: string;
 }
 
+interface UserFormData {
+  name: string;
+  email: string;
+  password?: string;
+  role: string;
+  status: string;
+}
+
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
@@ -56,7 +64,7 @@ export default function UsersPage() {
   const [viewingUser, setViewingUser] = useState<User | null>(null);
   
   // Form State
-  const [formData, setFormData] = useState({ name: '', email: '', password: '', role: 'user', status: 'active' });
+  const [formData, setFormData] = useState<UserFormData>({ name: '', email: '', password: '', role: 'user', status: 'active' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
 

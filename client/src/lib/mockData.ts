@@ -116,3 +116,5 @@ export const ANALYTICS_DATA: AnalyticsData = {
     { status: 'Failed', count: 15, color: '#8B5CF6' },
   ]
 };
+
+

@@ -16,7 +16,7 @@ export default function GeneratorPage() {
   const [numSlides, setNumSlides] = useState(3);
   const [generatedImages, setGeneratedImages] = useState<{id: number, url: string, prompt: string}[]>([]);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPreferences = async () => {

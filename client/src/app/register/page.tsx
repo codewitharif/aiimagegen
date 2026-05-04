@@ -16,7 +16,7 @@ export default function RegisterPage() {
   const [error, setError] = useState(null);
   const router = useRouter();
 
-  const handleRegister = async (e) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !password) return;
 
@@ -42,8 +42,8 @@ export default function RegisterPage() {
 
       // Redirect to admin dashboard
       router.push('/dashboard');
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Registration failed');
     } finally {
       setIsLoading(false);
     }

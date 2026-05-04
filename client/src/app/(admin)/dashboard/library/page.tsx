@@ -44,7 +44,7 @@ export default function LibraryPage() {
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(blobUrl);
-    } catch (err: any) {
+    } catch (err) {
       console.error('Download failed:', err);
     }
   };
@@ -80,7 +80,7 @@ export default function LibraryPage() {
 
         const data = await response.json();
         setImages(data);
-      } catch (err: any) {
+      } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
       } finally {
         setIsLoading(false);

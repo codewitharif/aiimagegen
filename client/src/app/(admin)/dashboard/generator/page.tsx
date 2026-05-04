@@ -33,7 +33,7 @@ export default function GeneratorPage() {
           if (data.defaultStyle) setSelectedStyle(data.defaultStyle);
           if (data.defaultFormat) setSelectedFormat(data.defaultFormat);
         }
-      } catch (err: any) {
+      } catch (err) {
         console.error('Failed to fetch preferences:', err);
       }
     };
@@ -75,8 +75,8 @@ export default function GeneratorPage() {
       
       const data = await response.json();
       setGeneratedImages(data.images || []);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
       setIsGenerating(false);
     }
@@ -102,7 +102,7 @@ export default function GeneratorPage() {
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(blobUrl);
-    } catch (err: any) {
+    } catch (err) {
       console.error('Download failed:', err);
     }
   };

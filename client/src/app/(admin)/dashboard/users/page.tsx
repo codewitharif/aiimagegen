@@ -80,8 +80,8 @@ export default function UsersPage() {
       setUsers(data.users);
       setPagination(data.pagination);
       setGlobalStats(data.stats);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
       setLoading(false);
     }
@@ -102,14 +102,14 @@ export default function UsersPage() {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
       setIsExporting(false);
     }
   };
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       setIsSubmitting(true);
@@ -132,8 +132,8 @@ export default function UsersPage() {
       
       await fetchUsers();
       closeModals();
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
       setIsSubmitting(false);
     }
@@ -172,8 +172,8 @@ export default function UsersPage() {
       });
       if (!response.ok) throw new Error('Failed to delete user');
       await fetchUsers();
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'An unknown error occurred');
     }
   };
 
